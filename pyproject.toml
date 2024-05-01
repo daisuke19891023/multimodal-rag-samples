@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "mymodule"
+name = "multimodal-rag"
 version = "0.1.0"
 description = ""
 authors = ["Okamoto Daisuke <okadaih11023@gmail.com>"]
@@ -12,6 +12,7 @@ openai = "^1.25.0"
 load-dotenv = "^0.1.0"
 tiktoken = "^0.6.0"
 pyyaml = "^6.0.1"
+langchain = "^0.1.17"
 
 [tool.poetry.group.dev]
 optional = true
@@ -65,14 +66,14 @@ line-length = 200
 
 [tool.mypy]
 disallow_untyped_defs = "True"
-exclude = ["notebooks", "examples", "example_data", "lmymodule/pydantic"]
+exclude = ["notebooks", "examples", "example_data", "multimodal-rag/pydantic"]
 
 [tool.coverage.xml]
 output = ".pytest_cache/coverage.xml"
 
 [tool.coverage.run]
 branch = true
-source = ["mymodule", "tests"]
+source = ["multimodal-rag", "tests"]
 omit = ["tests/fixtures/*"]
 data_file = ".pytest_cache/.coverage"
 
@@ -98,15 +99,15 @@ ignore-regex = '.*(Stati Uniti|Tense=Pres).*'
 ignore-words-list = 'momento,collison,ned,foor,reworkd,parth,whats,aapply,mysogyny,unsecure,damon,crate,aadd,symbl,precesses,accademia,nin'
 
 [tool.poe.tasks]
-lint = "ruff check mymodule"
-fmt-ruff = "ruff format mymodule"
+lint = "ruff check multimodal-rag"
+fmt-ruff = "ruff format multimodal-rag"
 test = "pytest"
-cover = "pytest --cov=mymodule --cov-report xml"
-fmt-check = "black mymodule --check"
-fmt-black = "black mymodule"
+cover = "pytest --cov=multimodal-rag --cov-report xml"
+fmt-check = "black multimodal-rag --check"
+fmt-black = "black multimodal-rag"
 docs = "sphinx-build -b html docs docs/_build/html"
-security = "bandit -r mymodule"
-typecheck = "mypy mymodule"
-complexity = "radon cc mymodule --average --show-complexity --xml > complexity_report.xml"
+security = "bandit -r multimodal-rag"
+typecheck = "mypy multimodal-rag"
+complexity = "radon cc multimodal-rag --average --show-complexity --xml > complexity_report.xml"
 build = ["fmt-black", "fmt-ruff", "test"]
 check = ["lint","fmt-check", "security", "typecheck", "complexity"]
