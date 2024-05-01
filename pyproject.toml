@@ -1,0 +1,112 @@
+[tool.poetry]
+name = "mymodule"
+version = "0.1.0"
+description = ""
+authors = ["Okamoto Daisuke <okadaih11023@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4.0"
+pydantic = "^2.7.1"
+openai = "^1.25.0"
+load-dotenv = "^0.1.0"
+tiktoken = "^0.6.0"
+pyyaml = "^6.0.1"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.4.2"
+ruff = "^0.4.2"
+pytest-cov = "^5.0.0"
+poethepoet = " 0.26.1"
+codespell = "^2.2.6"
+radon = "^6.0.1"
+bandit = "^1.7.8"
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.2.0"
+syrupy = "^4.6.1"
+pytest-mock = "^3.14.0"
+pytest-watcher = "^0.4.2"
+pytest-asyncio = "^0.23.6"
+pytest-profiling = "^1.7.0"
+freezegun = "^1.5.0"
+responses = "^0.25.0"
+
+[tool.poetry.group.typing]
+optional = true
+
+[tool.poetry.group.typing.dependencies]
+mypy = "^1.10.0"
+types-pyyaml = "^6.0.12.20240311"
+types-requests = "^2.31.0.20240406"
+types-jinja2 = "^2.11.9"
+
+
+[tool.poetry.group.docs.dependencies]
+sphinx = "^7.3.7"
+sphinx-rtd-theme = "^2.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 200
+
+[tool.black]
+line-length = 200
+
+
+[tool.mypy]
+disallow_untyped_defs = "True"
+exclude = ["notebooks", "examples", "example_data", "lmymodule/pydantic"]
+
+[tool.coverage.xml]
+output = ".pytest_cache/coverage.xml"
+
+[tool.coverage.run]
+branch = true
+source = ["mymodule", "tests"]
+omit = ["tests/fixtures/*"]
+data_file = ".pytest_cache/.coverage"
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "def __str__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "if typing.TYPE_CHECKING:",
+]
+
+[tool.codespell]
+skip = '.git,*.pdf,*.svg,*.pdf,*.yaml,*.ipynb,poetry.lock,*.min.js,*.css,package-lock.json,example_data,_dist,examples,*.trig'
+# Ignore latin etc
+ignore-regex = '.*(Stati Uniti|Tense=Pres).*'
+# whats is a typo but used frequently in queries so kept as is
+# aapply - async apply
+# unsecure - typo but part of API, decided to not bother for now
+ignore-words-list = 'momento,collison,ned,foor,reworkd,parth,whats,aapply,mysogyny,unsecure,damon,crate,aadd,symbl,precesses,accademia,nin'
+
+[tool.poe.tasks]
+lint = "ruff check mymodule"
+fmt-ruff = "ruff format mymodule"
+test = "pytest"
+cover = "pytest --cov=mymodule --cov-report xml"
+fmt-check = "black mymodule --check"
+fmt-black = "black mymodule"
+docs = "sphinx-build -b html docs docs/_build/html"
+security = "bandit -r mymodule"
+typecheck = "mypy mymodule"
+complexity = "radon cc mymodule --average --show-complexity --xml > complexity_report.xml"
+build = ["fmt-black", "fmt-ruff", "test"]
+check = ["lint","fmt-check", "security", "typecheck", "complexity"]
