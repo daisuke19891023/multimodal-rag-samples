@@ -4,6 +4,9 @@ version = "0.1.0"
 description = ""
 authors = ["Okamoto Daisuke <okadaih11023@gmail.com>"]
 readme = "README.md"
+packages = [
+    { include = "src"}
+]
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
@@ -13,6 +16,7 @@ load-dotenv = "^0.1.0"
 tiktoken = "^0.6.0"
 pyyaml = "^6.0.1"
 langchain = "^0.1.17"
+google-generativeai = "^0.5.2"
 
 [tool.poetry.group.dev]
 optional = true
@@ -66,7 +70,7 @@ line-length = 200
 
 [tool.mypy]
 disallow_untyped_defs = "True"
-exclude = ["notebooks", "examples", "example_data", "multimodal-rag/pydantic"]
+exclude = ["notebooks", "examples", "example_data"]
 
 [tool.coverage.xml]
 output = ".pytest_cache/coverage.xml"

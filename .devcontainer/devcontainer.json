@@ -64,7 +64,8 @@
         "KevinRose.vsc-python-indent",
         "charliermarsh.ruff",
         "ryanluker.vscode-coverage-gutters",
-        "ms-python.black-formatter"
+        "ms-python.black-formatter",
+        "ms-python.mypy-type-checker"
       ]
     }
   },

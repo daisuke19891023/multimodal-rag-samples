@@ -35,6 +35,8 @@ A Python project template using Poetry as a dependency management and packaging 
 
    If you are using the devcontainer, the virtual environment is automatically activated when opening a new terminal in Visual Studio Code.
 
+4.(optional)activate Gemini Account:
+ https://cloud.google.com/docs/authentication/provide-credentials-adc?hl=ja#how-to
 ## Usage
 
 Replace the mymodule folder with your own Python module, and update the pyproject.toml file accordingly.
