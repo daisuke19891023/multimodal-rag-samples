@@ -3,7 +3,7 @@
 {
   "name": "lmulti modal rag system samples",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-  "image": "mcr.microsoft.com/devcontainers/python:3.12-bullseye",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11-bullseye",
   "containerEnv": {
     "TZ": "Asia/Tokyo"
   },
@@ -65,7 +65,8 @@
         "charliermarsh.ruff",
         "ryanluker.vscode-coverage-gutters",
         "ms-python.black-formatter",
-        "ms-python.mypy-type-checker"
+        "ms-python.mypy-type-checker",
+        "tomoki1207.pdf"
       ]
     }
   },
