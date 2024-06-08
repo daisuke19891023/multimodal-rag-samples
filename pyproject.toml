@@ -15,7 +15,7 @@ openai = "^1.25.0"
 load-dotenv = "^0.1.0"
 tiktoken = "^0.6.0"
 pyyaml = "^6.0.1"
-langchain = "^0.1.17"
+langchain = "0.2.3"
 google-generativeai = "^0.5.2"
 tesseract = "^0.1.3"
 unstructured = {extras = ["all-docs"], version = "^0.13.6"}
@@ -23,6 +23,9 @@ pypdf = "^4.2.0"
 pypdf2 = "^3.0.1"
 pdfplumber = "^0.11.0"
 pdf2image = "^1.17.0"
+langchain-cli = "^0.0.24"
+langsmith = "^0.1.75"
+langgraph = "^0.0.65"
 
 [tool.poetry.group.dev]
 optional = true
