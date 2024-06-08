@@ -10,9 +10,15 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor 
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 sudo apt-get update && sudo apt-get install google-cloud-cli -y
 
+# Install Poppler for pdf2image
+sudo apt-get install poppler-utils -y
+
 # Install Poetry
 sudo chown -R vscode:vscode .
 poetry config virtualenvs.in-project true
 poetry install --with test,docs,dev,typing
+
+# add PYTHONPATH
+echo 'export PYTHONPATH="$PWD/src:$PYTHONPATH"' >> .venv/bin/activate
 source .venv/bin/activate
 echo "FINISH Install"

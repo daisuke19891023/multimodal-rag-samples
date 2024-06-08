@@ -22,6 +22,7 @@ unstructured = {extras = ["all-docs"], version = "^0.13.6"}
 pypdf = "^4.2.0"
 pypdf2 = "^3.0.1"
 pdfplumber = "^0.11.0"
+pdf2image = "^1.17.0"
 
 [tool.poetry.group.dev]
 optional = true
